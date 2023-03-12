@@ -1,0 +1,29 @@
+.button {
+    display: inline-block;
+    margin: 10px;
+    padding: 16px 24px;
+    background-color: #4CAF50;
+    color: #ffffff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease-in-out;
+}
+
+.button:hover,
+.button:hover {
+    background-color: #3e8e41;
+}
+
+.button_start:disabled {
+    opacity: 0.5;
+    /* cursor: not-allowed; */
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    /* margin-top: auto;
+    margin-bottom: auto; */
+
+}
