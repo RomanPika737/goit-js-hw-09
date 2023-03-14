@@ -1,3 +1,6 @@
+@import './01-color-switcher.css';
+@import './02-timer.css';
+
 * {
   box-sizing: border-box;
 }
