@@ -1,6 +1,6 @@
 @import './01-color-switcher.css';
 @import './02-timer.css';
-
+@import './03-promises.css';
 * {
   box-sizing: border-box;
 }
@@ -18,4 +18,18 @@ body {
 img {
   display: block;
   max-width: 100%;
+}
+
+
+.link {
+  color: #4CAF50;
+  text-decoration: none;
+}
+
+.link:hover {
+  text-decoration: underline;
+}
+
+.list_item {
+  list-style: none;
 }
