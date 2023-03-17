@@ -153,6 +153,8 @@ function convertMs(ms) {
 //   const selectedDate = new Date(date).getTime();
 //   if (selectedDate < currentDate) {
 //     Notiflix.Notify.warning("Please choose a date in the future");
+// refs.startButton.disabled = true;
+// date = 0;
 //     return;
 //   }
 //   refs.startButton.disabled = false;
