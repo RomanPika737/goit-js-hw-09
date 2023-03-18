@@ -8,12 +8,14 @@ const refs = {
 }
 
 let intervalId = null;
+refs.stopButton.disabled = true;
 
 refs.startButton.addEventListener('click', onStartButtonClick);
 refs.stopButton.addEventListener('click', onStopButtonClick);
 
 function onStartButtonClick() {
   refs.startButton.disabled = true;
+  refs.stopButton.disabled = false;
   intervalId = setInterval(() => {
     const bgColor = getRandomHexColor();
     refs.bodyElem.style.backgroundColor = bgColor;
@@ -22,6 +24,7 @@ function onStartButtonClick() {
 
 function onStopButtonClick() {
   refs.startButton.disabled = false;
+  refs.stopButton.disabled = true;
   clearInterval(intervalId);
   // intervalId = null;
 }

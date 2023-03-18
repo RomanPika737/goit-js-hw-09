@@ -15,7 +15,8 @@
     background-color: #3e8e41;
 }
 
-.button_start:disabled {
+.button_start:disabled,
+.button_stop:disabled {
     /* margin-left: 20px; */
     opacity: 0.5;
     /* cursor: not-allowed; */

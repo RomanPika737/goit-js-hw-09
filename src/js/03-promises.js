@@ -76,7 +76,7 @@ function onFormSubmit(event) {
     // console.log(promiseDelay);
   }
   
-  // event.target.reset();
+  event.target.reset();
 }
  
 
