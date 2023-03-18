@@ -13,19 +13,19 @@ Notiflix.Notify.init({
 const refs = {
   input: document.querySelector('#datetime-picker'),
   startButton: document.querySelector('[data-start]'),
-  clearButton: document.querySelector('[data-clear]'),
+  // clearButton: document.querySelector('[data-clear]'),
   dataDays: document.querySelector('[data-days]'),
   dataHours: document.querySelector('[data-hours]'),
   dataMinutes: document.querySelector('[data-minutes]'),
   dataSeconds: document.querySelector('[data-seconds]'),
 }
 // console.log(refs.startButton);
-let intervalId = null;
+// let intervalId = null;
 
-refs.clearButton.addEventListener('click', onClearButtonTimer);
+// refs.clearButton.addEventListener('click', onClearButtonTimer);
 
 refs.startButton.disabled = true;
-refs.clearButton.disabled = true;
+// refs.clearButton.disabled = true;
 
 const options = {
   enableTime: true,
@@ -33,7 +33,7 @@ const options = {
   defaultDate: new Date(),
   minuteIncrement: 1,
   onClose(selectedDates) {
-    // refs.startButton.disabled = true;
+   
     if (selectedDates[0].getTime() < Date.now()) {
       refs.startButton.disabled = true;
       // alert('Please choose a date in the future');
@@ -42,9 +42,12 @@ const options = {
       refs.startButton.disabled = false;
 
       refs.startButton.addEventListener('click', (event) => {
-        intervalId = setInterval(() => {
-          refs.startButton.disabled = true;
-           refs.clearButton.disabled = false;
+        refs.startButton.disabled = true;
+        //   refs.clearButton.disabled = false;
+        // refs.input.disabled = true;
+        
+       const intervalId = setInterval(() => {
+           refs.startButton.disabled = true;
           const deltaTime = selectedDates[0].getTime() - Date.now();
           const { days, hours, minutes, seconds } = convertMs(deltaTime);
           // console.log(convertMs(deltaTime));
@@ -61,8 +64,15 @@ const options = {
 
         if (deltaTime < 1000) {
           clearInterval(intervalId);
-          }
-        }, 1000);
+          // refs.input.disabled = false;
+          refs.clearButton.disabled = true;
+           refs.dataDays.textContent = '00';
+           refs.dataHours.textContent = '00';
+           refs.dataMinutes.textContent = '00';
+           refs.dataSeconds.textContent = '00';
+         }
+         
+        });
 
         //  if ( Number(deltaTime / 1000) <= 0.5) {
         //   clearInterval(intervalId);
@@ -70,6 +80,7 @@ const options = {
         // });
         
       })
+      
     }
   }
 }
@@ -80,17 +91,26 @@ function addLeadingZero(value) {
   return String(value).padStart(2, '0');
 }
 
-function onClearButtonTimer() {
-  
-  clearInterval(intervalId);
- 
-  refs.dataDays.textContent = "00";
-  refs.dataHours.textContent = "00";
-  refs.dataMinutes.textContent = "00";
-  refs.dataSeconds.textContent = "00";
+// function onClearButtonTimer() {
 
-  refs.clearButton.disabled = true;
-}
+//   clearInterval(intervalId);
+
+//    refs.dataDays.textContent = '00';
+//    refs.dataHours.textContent = '00';
+//   refs.dataMinutes.textContent = '00';
+//    refs.dataSeconds.textContent = '00';
+  
+ 
+//   // refs.dataDays.textContent = addLeadingZero(00);
+//   // refs.dataHours.textContent = addLeadingZero(00);
+//   // refs.dataMinutes.textContent = addLeadingZero(00);
+//   // refs.dataSeconds.textContent = addLeadingZero(00);
+
+
+
+//   refs.clearButton.disabled = true;
+//   refs.input.disabled = false;
+// }
 
 
 function convertMs(ms) {
@@ -101,7 +121,7 @@ function convertMs(ms) {
   const day = hour * 24;
 
   // Remaining days
-  const days = Math.floor(ms / day);
+  const days = addLeadingZero(Math.floor(ms / day));
   // Remaining hours
   const hours = addLeadingZero(Math.floor((ms % day) / hour));
   // Remaining minutes
